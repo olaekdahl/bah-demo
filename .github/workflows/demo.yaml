@@ -7,5 +7,5 @@ jobs:
             - run: echo "It's working!"
             - run: echo "Step 2"
             - run: echo ${{ github.actor }} is testing actions
-            - run: Trigger ${{ github.event_name }}
-            - run: OS ${{ runner.os }}
+            - run: echo Trigger ${{ github.event_name }}
+            - run: echo OS ${{ runner.os }}
