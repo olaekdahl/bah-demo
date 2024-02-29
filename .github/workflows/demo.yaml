@@ -1,0 +1,8 @@
+name: Demo Workflow
+on: [push]
+jobs:
+    github-job-demo:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "It's working!"
+            - run: echo "Step 2"
