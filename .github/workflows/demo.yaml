@@ -9,3 +9,6 @@ jobs:
             - run: echo ${{ github.actor }} is testing actions
             - run: echo Trigger ${{ github.event_name }}
             - run: echo OS ${{ runner.os }}
+            - name: Checkout/clone repo code to runner
+              uses: actions/checkout@4
+            - run: ls ${{ github.workspace }}
