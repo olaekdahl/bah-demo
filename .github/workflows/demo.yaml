@@ -12,3 +12,12 @@ jobs:
             - name: Checkout/clone repo code to runner
               uses: actions/checkout@v4
             - run: ls ${{ github.workspace }}
+            - name: Setup Python
+              uses: actions/setup-python@v5.0.0
+              with:
+                # Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset.
+                python-version: 3.11
+                # The target architecture (x86, x64) of the Python or PyPy interpreter.
+                architecture: x64
+            - run: python --version
+                            
