@@ -8,6 +8,7 @@ jobs:
             - run: echo "Step 2"
             - run: echo ${{ github.actor }} is testing actions
             - run: echo Trigger ${{ github.event_name }}
+            # - run: ${{ secrets.PAT }}
             - run: echo OS ${{ runner.os }}
             - name: Checkout/clone repo code to runner
               uses: actions/checkout@v4
