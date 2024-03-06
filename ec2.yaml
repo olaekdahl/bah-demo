@@ -22,7 +22,10 @@ Resources:
             systemctl start nginx
             systemctl enable nginx
             chown -R ec2-user:ec2-user /usr/share/nginx/html/
-            echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC9z9vwGWrk30TjcpvXwHPQeh8yKwmUGV44SLCi6w0A3iMbaBMkoUw1DVJVVPLLiRq7gyCfRhRgIAO+xzRbfbObEObSziBkyKPC37hb8H7u4FQeUT6Pg4rNxoFBT+ET0Tya397Eg9fP1BRPa0ELFpmBzSLj9ugnSxVyd83/g0D/xJ+KLn6rPVbCEF9DZJ0KNbB7/ZcyWmbTFBL7tqOsnRbpSFiekuz45U9VZLQcVibbkDyHjlAXivgHYnpJwzBRf3AkZWVhaz2VuREk+2rlKAAHB+rUr3sfx74usyLKEtXkFMGAg5Cwx0qtcAexEGrV0SOY9qfXRMo5WcC5tVQ80jGyfg1CbXJRi9PHFthsR5/lcmYN6DLdCO9i37ng68ja1mpF3m2r04e+YC0OXPGdFHYMR1Q7aY0bzRsS1ZlbEl+Q516zI+zTOoo48nh666rwstGgDbHgVcJrJCtlQy837mcZEdCnWtNkI9Qn+KffRcSb9pv3TCDV/ezac2FtEz/9E2zjPUKt/TLQFStcYJLJ2Rx1UpbhmTMRHtNGDDEjWtfF7ynk6doRgGsWe2IpMYbuNt6CKgbi2CBVjb1GUgr3HqC8DPhJI8pcxjowvhaRljAgXKINfOKksGU1LA4XK0z6oWRnySCA55GcFPsEHl6SvHK7SRXrKR6G1zxAW4Tt2q7gvw== github-actions-deploy" >> ~/.ssh/authorized_keys
+            echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC9z9vwGWrk30TjcpvXwHPQeh8yKwmUGV44SLCi6w0A3iMbaBMkoUw1DVJVVPLLiRq7gyCfRhRgIAO+xzRbfbObEObSziBkyKPC37hb8H7u4FQeUT6Pg4rNxoFBT+ET0Tya397Eg9fP1BRPa0ELFpmBzSLj9ugnSxVyd83/g0D/xJ+KLn6rPVbCEF9DZJ0KNbB7/ZcyWmbTFBL7tqOsnRbpSFiekuz45U9VZLQcVibbkDyHjlAXivgHYnpJwzBRf3AkZWVhaz2VuREk+2rlKAAHB+rUr3sfx74usyLKEtXkFMGAg5Cwx0qtcAexEGrV0SOY9qfXRMo5WcC5tVQ80jGyfg1CbXJRi9PHFthsR5/lcmYN6DLdCO9i37ng68ja1mpF3m2r04e+YC0OXPGdFHYMR1Q7aY0bzRsS1ZlbEl+Q516zI+zTOoo48nh666rwstGgDbHgVcJrJCtlQy837mcZEdCnWtNkI9Qn+KffRcSb9pv3TCDV/ezac2FtEz/9E2zjPUKt/TLQFStcYJLJ2Rx1UpbhmTMRHtNGDDEjWtfF7ynk6doRgGsWe2IpMYbuNt6CKgbi2CBVjb1GUgr3HqC8DPhJI8pcxjowvhaRljAgXKINfOKksGU1LA4XK0z6oWRnySCA55GcFPsEHl6SvHK7SRXrKR6G1zxAW4Tt2q7gvw== github-actions-deploy" >> /home/ec2-user/.ssh/authorized_keys
+            chmod 700 /home/ec2-user/.ssh
+            chmod 600 /home/ec2-user/.ssh/authorized_keys
+            chown -R ec2-user:ec2-user /home/ec2-user/.ssh
 
       Tags:
         - Key: Name
