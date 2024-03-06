@@ -1,2 +1,4 @@
 secrets.txt
 raw-data/
+*.pem
+github-actions-deploy*

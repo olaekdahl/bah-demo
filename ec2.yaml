@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: A simple CloudFormation template for an EC2 instance with a parameterized ImageId.
+
+Parameters:
+  ImageId:
+    Description: AMI ID for the EC2 instance
+    Type: AWS::EC2::Image::Id
+    AllowedPattern: "ami-.*"
+
+Resources:
+  SimpleEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref ImageId
+      InstanceType: t2.micro
+      KeyName: bah-ssh
+      UserData:
+        Fn::Base64:
+          !Sub |
+            #!/bin/bash
+            yum install nginx -y
+            systemctl start nginx
+            systemctl enable nginx
+      Tags:
+        - Key: Name
+          Value: nginx-01
+        - Key: environment
+          Value: development
+        - Key: owner
+          Value: ola@example-corp.com
+
+# aws cloudformation create-stack --stack-name cf-demo3 --template-body file://cf-demo2.yaml --parameters ParameterKey=ImageId,ParameterValue=ami-0440d3b780d96b29d
+# aws cloudformation describe-stacks --stack-name cf-demo2
+# aws cloudformation delete-stack --stack-name cf-demo2
+# aws cloudformation wait stack-delete-complete --stack-name cf-demo2
