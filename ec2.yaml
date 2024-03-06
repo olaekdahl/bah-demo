@@ -21,6 +21,9 @@ Resources:
             yum install nginx -y
             systemctl start nginx
             systemctl enable nginx
+            chown -R ec2-user:ec2-user /usr/share/nginx/html/
+            echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC9z9vwGWrk30TjcpvXwHPQeh8yKwmUGV44SLCi6w0A3iMbaBMkoUw1DVJVVPLLiRq7gyCfRhRgIAO+xzRbfbObEObSziBkyKPC37hb8H7u4FQeUT6Pg4rNxoFBT+ET0Tya397Eg9fP1BRPa0ELFpmBzSLj9ugnSxVyd83/g0D/xJ+KLn6rPVbCEF9DZJ0KNbB7/ZcyWmbTFBL7tqOsnRbpSFiekuz45U9VZLQcVibbkDyHjlAXivgHYnpJwzBRf3AkZWVhaz2VuREk+2rlKAAHB+rUr3sfx74usyLKEtXkFMGAg5Cwx0qtcAexEGrV0SOY9qfXRMo5WcC5tVQ80jGyfg1CbXJRi9PHFthsR5/lcmYN6DLdCO9i37ng68ja1mpF3m2r04e+YC0OXPGdFHYMR1Q7aY0bzRsS1ZlbEl+Q516zI+zTOoo48nh666rwstGgDbHgVcJrJCtlQy837mcZEdCnWtNkI9Qn+KffRcSb9pv3TCDV/ezac2FtEz/9E2zjPUKt/TLQFStcYJLJ2Rx1UpbhmTMRHtNGDDEjWtfF7ynk6doRgGsWe2IpMYbuNt6CKgbi2CBVjb1GUgr3HqC8DPhJI8pcxjowvhaRljAgXKINfOKksGU1LA4XK0z6oWRnySCA55GcFPsEHl6SvHK7SRXrKR6G1zxAW4Tt2q7gvw== github-actions-deploy" >> ~/.ssh/authorized_keys
+
       Tags:
         - Key: Name
           Value: nginx-01
@@ -29,7 +32,7 @@ Resources:
         - Key: owner
           Value: ola@example-corp.com
 
-# aws cloudformation create-stack --stack-name cf-demo3 --template-body file://cf-demo2.yaml --parameters ParameterKey=ImageId,ParameterValue=ami-0440d3b780d96b29d
+# aws cloudformation create-stack --stack-name ec2-deploy-demo --template-body file://ec2.yaml --parameters ParameterKey=ImageId,ParameterValue=ami-0440d3b780d96b29d
 # aws cloudformation describe-stacks --stack-name cf-demo2
-# aws cloudformation delete-stack --stack-name cf-demo2
+# aws cloudformation delete-stack --stack-name cf-demo3
 # aws cloudformation wait stack-delete-complete --stack-name cf-demo2
