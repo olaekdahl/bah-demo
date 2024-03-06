@@ -32,7 +32,7 @@ Resources:
         - Key: owner
           Value: ola@example-corp.com
 
-# aws cloudformation create-stack --stack-name ec2-deploy-demo --template-body file://ec2.yaml --parameters ParameterKey=ImageId,ParameterValue=ami-0440d3b780d96b29d
+# aws cloudformation create-stack --stack-name ec2-deploy-demo2 --template-body file://ec2.yaml --parameters ParameterKey=ImageId,ParameterValue=ami-0440d3b780d96b29d
 # aws cloudformation describe-stacks --stack-name cf-demo2
-# aws cloudformation delete-stack --stack-name cf-demo3
+# aws cloudformation delete-stack --stack-name ec2-deploy-demo
 # aws cloudformation wait stack-delete-complete --stack-name cf-demo2
