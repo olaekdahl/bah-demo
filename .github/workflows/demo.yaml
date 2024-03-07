@@ -1,5 +1,5 @@
 name: Demo Workflow
-on: [push]
+on: workflow_dispatch #[push]
 jobs:
     github-job-demo:
         runs-on: ubuntu-latest
