@@ -42,7 +42,7 @@ secret = get_secret(secret_name, region_name)
 # Use the secret to connect to MongoDB
 username = secret['username']
 password = secret['password']
-host = "docdb-2024-03-08-19-04-08.cuvrpg7gj6rj.us-east-1.docdb.amazonaws.com/demodb" #secret['host']
+host = "docdb-2024-03-08-19-04-08.cuvrpg7gj6rj.us-east-1.docdb.amazonaws.com/demodb:27017" #secret['host']
 
 s3_bucket = secret['s3_bucket']
 s3_key = secret['s3_key']
@@ -51,7 +51,7 @@ ssl_cert_file_path = '/home/ec2-user/app/ssl_cert.pem'
 download_s3_file(s3_bucket, s3_key, ssl_cert_file_path)
 
 # Connect to your MongoDB or DocumentDB
-connection_string = f"mongodb+srv://{username}:{password}@{host}?ssl=true&ssl_ca_certs={ssl_cert_file_path}"
+connection_string = f"mongodb://{username}:{password}@{host}?tls=true&tlsCAFile={ssl_cert_file_path}&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 client = MongoClient(connection_string, tlsCAFile=certifi.where())
 db = client.demodb
 boardgames = db.boardgames
