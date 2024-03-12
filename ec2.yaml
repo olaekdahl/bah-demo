@@ -21,7 +21,8 @@ Resources:
             mkdir /home/ec2-user/app
             chown -R ec2-user:ec2-user /home/ec2-user/app
             yum install python3 -y
-            pip install Flask pymongo
+            yum install python3-pip -y
+            pip install Flask pymongo boto3
             yum install nginx -y
             systemctl start nginx
             systemctl enable nginx

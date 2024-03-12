@@ -4,11 +4,55 @@ from flask import Flask, jsonify, request
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import certifi
+import boto3
+import json
 
 app = Flask(__name__)
 
-# Connect to DocumentDB
-client = MongoClient('mongodb+srv://<username>:<password>@docdb-2024-03-08-19-04-08.cuvrpg7gj6rj.us-east-1.docdb.amazonaws.com:27017/demodb?ssl=true&ssl_ca_certs=certifi.where()')
+def get_secret(secret_name, region_name):
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+
+    get_secret_value_response = client.get_secret_value(SecretId=secret_name)
+
+    # Decrypts secret using the associated KMS CMK
+    # Depending on whether the secret is a string or binary, one of these fields will be populated
+    if 'SecretString' in get_secret_value_response:
+        secret = get_secret_value_response['SecretString']
+        return json.loads(secret)
+    else:
+        decoded_binary_secret = base64.b64decode(get_secret_value_response['SecretBinary'])
+        return json.loads(decoded_binary_secret)
+
+def download_s3_file(bucket, key, download_path):
+    s3 = boto3.client('s3')
+    s3.download_file(bucket, key, download_path)
+
+# Your secret name and region
+secret_name = "app"
+region_name = "us-east-1"
+
+# Fetch the secret
+secret = get_secret(secret_name, region_name)
+
+# Use the secret to connect to MongoDB
+username = secret['username']
+password = secret['password']
+host = secret['host']
+
+s3_bucket = secret['s3_bucket']
+s3_key = secret['s3_key']
+# Save the SSL certificate to a file if needed
+ssl_cert_file_path = '/home/ec2-user/app/ssl_cert.pem'
+download_s3_file(s3_bucket, s3_key, ssl_cert_file_path)
+
+# Connect to your MongoDB or DocumentDB
+connection_string = f"mongodb+srv://{username}:{password}@{host}/?ssl=true&ssl_ca_certs={ssl_cert_file_path}"
+client = MongoClient(connection_string, tlsCAFile=certifi.where())
 db = client.demodb
 boardgames = db.boardgames
 
