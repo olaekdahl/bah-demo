@@ -3,11 +3,12 @@
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
 from bson.objectid import ObjectId
-import certifi
+from flask_cors import CORS
 import boto3
 import json
 
 app = Flask(__name__)
+CORS(app)
 
 def get_secret(secret_name, region_name):
     # Create a Secrets Manager client
@@ -81,9 +82,7 @@ def get_boardgame(id):
     except Exception as e:
         return jsonify({"error": "Invalid ID format"}), 400
 
-# curl -X POST http://localhost:5000/search \
-# -H "Content-Type: application/json" \
-# -d '{"name": "your_search_term"}'
+# curl -X POST http://localhost:5000/search -H "Content-Type: application/json"  -d '{"name": "Renature"}'
 
 @app.route('/search', methods=['POST'])
 def search_boardgames():

@@ -24,15 +24,15 @@ jobs:
                 port: 22
                 source: "app.py"
                 target: "/home/ec2-user/app"
-            - name: Run Flask dev server
-              uses: appleboy/ssh-action@master
-              with:
-                host: ${{ secrets.EC2_HOST }}
-                username: ec2-user
-                key: ${{ secrets.DEPLOY_KEY }}
-                port: 22
-                script: |
-                  export FLASK_APP=app.py
-                  export FLASK_ENV=development
-                  cd /home/ec2-user/app
-                  nohup flask run &
+            # - name: Run Flask dev server
+            #   uses: appleboy/ssh-action@master
+            #   with:
+            #     host: ${{ secrets.EC2_HOST }}
+            #     username: ec2-user
+            #     key: ${{ secrets.DEPLOY_KEY }}
+            #     port: 22
+            #     script: |
+            #       export FLASK_APP=app.py
+            #       export FLASK_ENV=development
+            #       cd /home/ec2-user/app
+            #       nohup flask run &
