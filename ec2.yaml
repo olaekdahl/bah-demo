@@ -18,6 +18,7 @@ Resources:
         Fn::Base64:
           !Sub |
             #!/bin/bash
+            yum install python3 -y
             yum install nginx -y
             systemctl start nginx
             systemctl enable nginx
