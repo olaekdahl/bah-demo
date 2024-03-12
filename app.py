@@ -42,7 +42,7 @@ secret = get_secret(secret_name, region_name)
 # Use the secret to connect to MongoDB
 username = secret['username']
 password = secret['password']
-host = "docdb-2024-03-08-19-04-08.cuvrpg7gj6rj.us-east-1.docdb.amazonaws.com:27017/demodb" #secret['host']
+host = "docdb-2024-03-08-19-04-08.cuvrpg7gj6rj.us-east-1.docdb.amazonaws.com/demodb" #secret['host']
 
 s3_bucket = secret['s3_bucket']
 s3_key = secret['s3_key']
