@@ -34,4 +34,5 @@ jobs:
                 script: |
                   export FLASK_APP=app.py
                   export FLASK_ENV=development
+                  cd /home/ec2-user/app
                   flask run
