@@ -51,7 +51,7 @@ ssl_cert_file_path = '/home/ec2-user/app/ssl_cert.pem'
 download_s3_file(s3_bucket, s3_key, ssl_cert_file_path)
 
 # Connect to your MongoDB or DocumentDB
-connection_string = f"mongodb+srv://{username}:{password}@{host}/?ssl=true&ssl_ca_certs={ssl_cert_file_path}"
+connection_string = f"mongodb+srv://{username}:{password}@{host}?ssl=true&ssl_ca_certs={ssl_cert_file_path}"
 client = MongoClient(connection_string, tlsCAFile=certifi.where())
 db = client.demodb
 boardgames = db.boardgames
