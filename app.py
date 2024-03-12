@@ -59,10 +59,14 @@ boardgames = db.boardgames
 @app.route('/boardgames', methods=['GET'])
 def get_boardgames():
     # Retrieve the first ten records
-    games = list(boardgames.find().limit(10))
-    for game in games:
-        game['_id'] = str(game['_id'])
-    return jsonify(games)
+    try:
+        games = list(boardgames.find().limit(10))
+        for game in games:
+            game['_id'] = str(game['_id'])
+        return jsonify(games)
+    except Exception as e:
+        print(e)
+        return jsonify({"error":e})
 
 @app.route('/boardgames/<id>', methods=['GET'])
 def get_boardgame(id):
