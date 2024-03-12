@@ -52,7 +52,7 @@ download_s3_file(s3_bucket, s3_key, ssl_cert_file_path)
 
 # Connect to your MongoDB or DocumentDB
 connection_string = f"mongodb://{username}:{password}@{host}?tls=true&tlsCAFile={ssl_cert_file_path}&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
-client = MongoClient(connection_string, tlsCAFile=certifi.where())
+client = MongoClient(connection_string) #, tlsCAFile=certifi.where())
 db = client.demodb
 boardgames = db.boardgames
 
