@@ -24,6 +24,15 @@ jobs:
                 port: 22
                 source: "app.py"
                 target: "/home/ec2-user/app"
+            - name: Run a script to generate some files
+              run: |
+                mkdir artifacts
+                echo "Hello, World!" > artifacts/example.txt
+            - name: Upload artifact
+              uses: actions/upload-artifact@v2
+              with:
+                name: example-artifact
+                path: artifacts/
             # - name: Run Flask dev server
             #   uses: appleboy/ssh-action@master
             #   with:
