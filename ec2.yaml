@@ -22,7 +22,7 @@ Resources:
             chown -R ec2-user:ec2-user /home/ec2-user/app
             yum install python3 -y
             yum install python3-pip -y
-            pip install Flask pymongo boto3 certifi
+            pip install Flask pymongo boto3 certifi waitress flask_cors
             yum install nginx -y
             systemctl start nginx
             systemctl enable nginx
