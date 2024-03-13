@@ -1,0 +1,17 @@
+# annotated
+git tag -a v1.0 -m "Your annotation here"
+
+# lightweight
+git tag v1.0
+
+# push tags
+git push origin v1.0
+
+# all
+git push origin --tags
+
+
+# tag release
+git commit -m "Final changes for v1.0"
+git tag -a v1.0 -m "Release version 1.0"
+git push origin v1.0
