@@ -33,6 +33,12 @@ jobs:
               with:
                 name: example-artifact
                 path: artifacts/
+            - name: Log in to GitHub Container Registry
+              run: echo ${{ secrets.GH_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            - name: Build and push Docker image
+              run: |
+                docker build . -t ghcr.io/${{ github.repository_owner }}/PACKAGE_NAME:latest
+                docker push ghcr.io/${{ github.repository_owner }}/PACKAGE_NAME:latest
             # - name: Run Flask dev server
             #   uses: appleboy/ssh-action@master
             #   with:
