@@ -57,7 +57,7 @@ client = MongoClient(connection_string) #, tlsCAFile=certifi.where())
 db = client.demodb
 boardgames = db.boardgames
 
-@app.route('/boardgames', methods=['GET'])
+@app.route('/', methods=['GET'])
 def index():
     return jsonify({"status": "success" }), 200
 
