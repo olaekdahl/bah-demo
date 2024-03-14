@@ -1,5 +1,5 @@
 name: Deploy to EC2 Workflow
-on: [push]
+on: [workflow_dispatch]
 jobs:
     github-job-demo:
         runs-on: ubuntu-latest

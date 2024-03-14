@@ -5,7 +5,7 @@ STACK_NAME="script-deploy"
 GITHUB_REPO="olaekdahl/bah-demo"
 
 # Deploy stack
-aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://ec2.yaml --parameters ParameterKey=ImageId,ParameterValue=ami-0440d3b780d96b29d
+aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://ec2_docker.yaml --parameters ParameterKey=ImageId,ParameterValue=ami-0440d3b780d96b29d
 # Wait for the stack to be created
 aws cloudformation wait stack-create-complete --stack-name $STACK_NAME
 

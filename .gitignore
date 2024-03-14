@@ -2,3 +2,4 @@ raw-data/
 *.pem
 github-actions-deploy*
 misc.txt
+__pycache__
