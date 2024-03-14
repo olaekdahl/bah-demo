@@ -58,6 +58,10 @@ db = client.demodb
 boardgames = db.boardgames
 
 @app.route('/boardgames', methods=['GET'])
+def index():
+    return jsonify({"status": "success" }), 200
+
+@app.route('/boardgames', methods=['GET'])
 def get_boardgames():
     # Retrieve the first ten records
     try:
@@ -67,7 +71,7 @@ def get_boardgames():
         return jsonify(games)
     except Exception as e:
         print(e)
-        return jsonify({"error":e})
+        return jsonify({"error": json.dumps(e, default=str)})
 
 @app.route('/boardgames/<id>', methods=['GET'])
 def get_boardgame(id):
