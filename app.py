@@ -1,5 +1,3 @@
-# pip install Flask pymongo
-
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -29,10 +27,6 @@ def get_secret(secret_name, region_name):
         decoded_binary_secret = base64.b64decode(get_secret_value_response['SecretBinary'])
         return json.loads(decoded_binary_secret)
 
-def download_s3_file(bucket, key, download_path):
-    s3 = boto3.client('s3')
-    s3.download_file(bucket, key, download_path)
-
 # Your secret name and region
 secret_name = "app"
 region_name = "us-east-1"
@@ -43,18 +37,12 @@ secret = get_secret(secret_name, region_name)
 # Use the secret to connect to MongoDB
 username = secret['username']
 password = secret['password']
-host = "docdb-2024-03-08-19-04-08.cuvrpg7gj6rj.us-east-1.docdb.amazonaws.com/demodb:27017" #secret['host']
-
-s3_bucket = secret['s3_bucket']
-s3_key = secret['s3_key']
-# Save the SSL certificate to a file if needed
-ssl_cert_file_path = '/usr/src/app/ssl_cert.pem'
-download_s3_file(s3_bucket, s3_key, ssl_cert_file_path)
+host = "cluster0.kmrzslb.mongodb.net/demo"
 
 # Connect to your MongoDB or DocumentDB
-connection_string = f"mongodb://{username}:{password}@{host}?tls=true&tlsCAFile={ssl_cert_file_path}&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
-client = MongoClient(connection_string) #, tlsCAFile=certifi.where())
-db = client.demodb
+connection_string = f"mongodb+srv://{username}:{password}@{host}"
+client = MongoClient(connection_string)
+db = client.demo
 boardgames = db.boardgames
 
 @app.route('/', methods=['GET'])
