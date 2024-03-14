@@ -9,8 +9,8 @@ COPY . .
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
-RUN echo 'export AWS_ACCESS_KEY_ID=VAL1' >> /home/ec2-user/.bashrc
-RUN echo 'export AWS_SECRET_ACCESS_KEY=VAL2' >> /home/ec2-user/.bashrc
+RUN echo 'export AWS_ACCESS_KEY_ID=VAL1' >> ~/.bashrc
+RUN echo 'export AWS_SECRET_ACCESS_KEY=VAL2' >> ~/.bashrc
 
 # Expose the port Waitress will run on
 EXPOSE 5000
