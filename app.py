@@ -37,10 +37,11 @@ secret = get_secret(secret_name, region_name)
 # Use the secret to connect to MongoDB
 username = secret['username']
 password = secret['password']
-host = "cluster0.kmrzslb.mongodb.net/demo"
+host = secret['host']
+database = secret['database']
 
 # Connect to your MongoDB or DocumentDB
-connection_string = f"mongodb+srv://{username}:{password}@{host}"
+connection_string = f"mongodb+srv://{username}:{password}@{host}/{database}"
 client = MongoClient(connection_string)
 db = client.demo
 boardgames = db.boardgames
