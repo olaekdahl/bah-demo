@@ -48,7 +48,7 @@ host = "docdb-2024-03-08-19-04-08.cuvrpg7gj6rj.us-east-1.docdb.amazonaws.com/dem
 s3_bucket = secret['s3_bucket']
 s3_key = secret['s3_key']
 # Save the SSL certificate to a file if needed
-ssl_cert_file_path = '~/usr/src/app/ssl_cert.pem'
+ssl_cert_file_path = '/usr/src/app/ssl_cert.pem'
 download_s3_file(s3_bucket, s3_key, ssl_cert_file_path)
 
 # Connect to your MongoDB or DocumentDB
