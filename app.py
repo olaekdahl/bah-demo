@@ -81,7 +81,7 @@ def get_boardgame(id):
 def search_boardgames():
     # Find matches based on board game name. Allows wildcards.
     data = request.get_json()
-    query_name = data.get('name', '')
+    query_name = data.get('name')
     games = list(boardgames.find({"name": {"$regex": query_name, "$options": "i"}}))
     for game in games:
         game['_id'] = str(game['_id'])
