@@ -15,5 +15,9 @@ RUN echo 'export AWS_SECRET_ACCESS_KEY=VAL2' >> ~/.bashrc
 # Expose the port Waitress will run on
 EXPOSE 5000
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Run app.py using Waitress when the container launches
 CMD ["python", "app.py"]
