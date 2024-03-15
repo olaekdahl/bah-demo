@@ -1,3 +1,6 @@
+
+[![Deploy to EC2 Workflow](https://github.com/olaekdahl/bah-demo/actions/workflows/deploy_container.yaml/badge.svg)](https://github.com/olaekdahl/bah-demo/actions/workflows/deploy_container.yaml)
+
 ## BoardGame
 
 ### Overview
